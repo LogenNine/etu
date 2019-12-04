@@ -94,6 +94,11 @@ bool bitRep2(long long int* ap, int aByteSize, char prefix) //todo return number
 	//int b = ~bit;
 	//bitRep((long long int*) & b, sizeof(b), prefix);
 	bitRep((long long int*) & a, aByteSize, prefix);
+	if (prefix == 'i' || prefix == 'I') cout << "This is the decimal value after changing selected bit randomly: " << (int)a << endl;
+	if (prefix == 's' || prefix == 'S') cout << "This is the decimal value after changing selected bit randomly: " << (short int)a << endl;
+	if (prefix == 'u' || prefix == 'U') cout << "This is the decimal value after changing selected bit randomly: " << (unsigned int)a << endl;
+	if (prefix == 'f' || prefix == 'F') cout << "This is the decimal value after changing selected bit randomly: " << (float)a << endl;
+	if (prefix == 'd' || prefix == 'D') cout << "This is the decimal value after changing selected bit randomly: " << (double)a << endl;
 	return true;
 }//bitRep2
 
