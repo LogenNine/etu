@@ -394,6 +394,41 @@ int averageAndMedian(int arr[], int size, int median, int average, int moda) {
 	return 0;
 }
 
+void flag() {
+	int code = 0;
+	const string red("\033[0;41m");
+	const string blue("\033[0;44m");
+	const string white("\033[0;47m");
+	const string green("\033[0;42m");
+	const string yellow("\033[0;43m");
+	const string reset("\033[0m");
+	cout << "Это флаг Франции: " << endl;
+	for (int p = 0; p < 14; p++) {
+		for (int i = 0; i < 15; i++) cout << blue << " " << reset;
+		for (int i = 0; i < 15; i++) cout << white << " " << reset;
+		for (int i = 0; i < 15; i++) cout << red << " " << reset;
+		cout << endl;
+	}
+	cout << endl << "А это флаг Сенегала: " << endl;
+	for (int p = 0; p < 15; p++) {
+		for (int i = 0; i < 15; i++) cout << green << " " << reset;
+		for (int i = 0; i < 15; i++) {
+			if(p == 5 && i == 7) cout << green << " " << reset;
+			else if (p == 6 && (i == 4 || i == 6 || i == 7 || i == 8 || i == 10)) cout << green << " " << reset;
+			else if (p == 7 && (i == 5 || i == 6 || i == 7 || i == 8 || i == 9)) cout << green << " " << reset;
+			else if (p == 8 && (i == 6 || i == 7 || i == 8)) cout << green << " " << reset;
+			else if(p == 9 && (i == 5 || i == 9)) cout << green << " " << reset;
+			else cout << yellow << " " << reset;
+		}
+		for (int i = 0; i < 15; i++) cout << red << " " << reset;
+		cout << endl;
+	}
+	while (code != 13) {
+		cout << endl << "Нажмите enter чтобы вернутся в главное меню..." << endl;
+		code = _getch();
+	}
+}
+
 int arraysMenu() {
 	const int size = 100;
 	int arr[size], code = 0, key = 0, fibC = 0, sizeD = 0, fibArr[30], median = 0, average = 0, moda = 0;
@@ -563,8 +598,8 @@ int main()
 				break;
 			}
 			case 3: {
-				cout << "Work in progress. Нажмите enter чтобы продолжить..." << endl;
-				if (_getch() == 13) break;
+				flag();
+				break;
 			}
 			case 4: {
 				return 0;
