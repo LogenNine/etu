@@ -1,7 +1,6 @@
 ﻿#include <iostream>
 #include <conio.h>
 #include <ctime>
-#include <vector>
 
 using namespace std;
 
@@ -161,6 +160,7 @@ int menu() {
 	while (code != 13) {
 		system("cls");
 		key = (key + 7) % 7;
+		cout << "Выберите пункт меню с помощью стрелок и enter'а" << endl;
 		if (key == 0) cout << "-> Заполнение матрицы" << endl;
 		else cout << "   Заполнение матрицы" << endl;
 		if (key == 1) cout << "-> Определитель матрицы" << endl;
