@@ -2,20 +2,26 @@
 #include <chrono>
 #include <ctime>
 
-using namespace std::literals;
-namespace chrono = std::chrono;
-using clock_type = chrono::high_resolution_clock;
+using std::cout;
+using std::cin;
+using std::endl;
+using std::chrono::high_resolution_clock;
+using std::chrono::duration;
+using std::chrono::duration_cast;
+using std::fixed;
+//namespace chrono = chrono;
+//using clock_type = chrono::high_resolution_clock;
 
 const int size = 200;
 int arr[size] = {};
 
 void addElements() {
-	std::cout << "array contains these elements:" << std::endl;
+	cout << "array contains these elements:" << endl;
 	for (int i = 0; i < size; ++i) {
 		arr[i] = rand() % 100;
-		std::cout << arr[i] << " ";
+		cout << arr[i] << " ";
 	}
-	std::cout << std::endl;
+	cout << endl;
 }//addElements
 
 int partition(int* arr, int start, int end) {
@@ -61,8 +67,8 @@ int averageMatch(int* arr, int start, int end)
 	for (int i = 0; i < end; ++i) {
 		if (a == arr[i]) ++b;
 	}
-	std::cout << "The average between min and max value of the elements is " << a << std::endl;
-	std::cout << "There are " << b << " elements in the array that are equal to the average between min and max value of the elements" << std::endl;
+	cout << "The average between min and max value of the elements is " << a << endl;
+	cout << "There are " << b << " elements in the array that are equal to the average between min and max value of the elements" << endl;
 	return 0;
 }//averageMatch
 
@@ -73,7 +79,7 @@ int smallerMatch(int a, int* arr, int start, int end)
 	{
 		if (arr[i] < a) ++b;
 	}
-	std::cout << "There are " << b << " elements in the array that are smaller than " << a << std::endl;
+	cout << "There are " << b << " elements in the array that are smaller than " << a << endl;
 	return 0;
 }//smallerMatch
 
@@ -84,7 +90,7 @@ int biggerMatch(int a, int* arr, int start, int end)
 	{
 		if (a < arr[i]) ++b;
 	}
-	std::cout << "There are " << b << " elements in the array that are bigger than " << a << std::endl;
+	cout << "There are " << b << " elements in the array that are bigger than " << a << endl;
 	return 0;
 }
 
@@ -106,7 +112,7 @@ void deleteElement(unsigned index)
 int searchElement(int a, int* arr, int start, int end)
 {
 	for (int i = start; i < end; ++i) {
-		if (a == i) std::cout << arr[i] << " lies at that index\n";
+		if (a == i) cout << arr[i] << " lies at that index\n";
 	}
 	return 0;
 }//deleteElement
@@ -123,9 +129,9 @@ int symArray(int* arr, int size) {
 		arr[size - i] = arr[size];
 	}
 	for (int i = 0; i < size; ++i) {
-		std::cout << arr[i] << " ";
+		cout << arr[i] << " ";
 	}
-	std::cout << std::endl;
+	cout << endl;
 	return 0;
 }
 
@@ -142,26 +148,26 @@ int main()
 	srand((unsigned int)time(0));
 	addElements();
 	quicksort(arr, 0, size - 1);
-	std::cout << "after the quicksort array looks like this:" << std::endl;
+	cout << "after the quicksort array looks like this:" << endl;
 	for (int i = 0; i < size; ++i) {
-		std::cout << arr[i] << " ";
+		cout << arr[i] << " ";
 	}
-	std::cout << std::endl;
-	std::cout << "smallest element is: " << arr[0] << " and biggest element is: " << arr[size - 1] << std::endl << std::endl;
+	cout << endl;
+	cout << "smallest element is: " << arr[0] << " and biggest element is: " << arr[size - 1] << endl << endl;
 	averageMatch(arr, 0, size - 1);
 	for (;;) {
-		std::cout << "In this step you will find how many elements in the array are bigger or smaller than the number you did input:" << std::endl;
-		std::cout << "Now enter any number from " << 0 << " to " << INT_MAX << std::endl;
-		std::cin >> inputNum;
+		cout << "In this step you will find how many elements in the array are bigger or smaller than the number you did input:" << endl;
+		cout << "Now enter any number from " << 0 << " to " << INT_MAX << endl;
+		cin >> inputNum;
 		if (0 < inputNum && INT_MAX > inputNum) break;
-		std::cout << "Error, wrong input, try to input any number from " << 0 << " to " << INT_MAX << std::endl;
-		std::cin.clear();
-		std::cin.ignore(INT_MAX, '\n');
+		cout << "Error, wrong input, try to input any number from " << 0 << " to " << INT_MAX << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
 	for (;;) {
-		std::cout << "do you want to find how many numbers are bigger than yours or how many numbers are smaller?" << std::endl;
-		std::cout << "Input either 'b' for 'bigger' or 's' for 'smaller' to specify what you want:" << std::endl;
-		std::cin >> inputSpec;
+		cout << "do you want to find how many numbers are bigger than yours or how many numbers are smaller?" << endl;
+		cout << "Input either 'b' for 'bigger' or 's' for 'smaller' to specify what you want:" << endl;
+		cin >> inputSpec;
 		switch (inputSpec) {
 
 		case 'b': {
@@ -174,96 +180,94 @@ int main()
 		}
 		default:
 		{
-			std::cout << "error wrong input, try inputting 'b' or 's'" << std::endl;
-			std::cin.clear();
-			std::cin.ignore(INT_MAX, '\n');
+			cout << "error wrong input, try inputting 'b' or 's'" << endl;
+			cin.clear();
+			cin.ignore(INT_MAX, '\n');
 			continue;
 		}
 		}
 		break;
 	}
 	for (;;) {
-		std::cout << "In this step you will replace element at the selected index:" << std::endl;
-		std::cout << "chose where to insert the element, input number from 0 to " << size - 1 << std::endl;
-		std::cin >> inputSpotRepl;
+		cout << "In this step you will replace element at the selected index:" << endl;
+		cout << "chose where to insert the element, input number from 0 to " << size - 1 << endl;
+		cin >> inputSpotRepl;
 		if (0 < inputSpotRepl && size - 1 > inputSpotRepl) break;
-		std::cout << "Error, wrong input, try to input any number from " << 0 << " to " << size - 1 << std::endl;
-		std::cin.clear();
-		std::cin.ignore(INT_MAX, '\n');
+		cout << "Error, wrong input, try to input any number from " << 0 << " to " << size - 1 << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
 	for (;;) {
-		std::cout << "input the number with which to replace the element from the selected spot, it must be bigger than " << INT_MIN << " and smaller than " << INT_MAX << std::endl;
-		std::cin >> inputForRepl;
+		cout << "input the number with which to replace the element from the selected spot, it must be bigger than " << INT_MIN << " and smaller than " << INT_MAX << endl;
+		cin >> inputForRepl;
 		if (INT_MIN < inputForRepl && INT_MAX > inputForRepl) break;
-		std::cout << "Error, wrong input, try to input any number from " << INT_MIN << " to " << INT_MAX << std::endl;
-		std::cin.clear();
-		std::cin.ignore(INT_MAX, '\n');
+		cout << "Error, wrong input, try to input any number from " << INT_MIN << " to " << INT_MAX << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
-	auto t1 = clock_type::now();
+	high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	replaceElement(inputSpotRepl, inputForRepl, arr, 0, size - 1);
-	auto t2 = clock_type::now();
-	auto interval = t2 - t1;
-	std::cout << "speed of replacing element " << chrono::duration_cast<chrono::nanoseconds>(interval).count() << "ns\n";
+	high_resolution_clock::time_point t2 = high_resolution_clock::now();
+	duration<double> time_span = duration_cast<duration<double>>(t2 - t1);
+	cout << "speed of replacing element " << time_span.count() * pow(10.0, 9.0) << " nanoseconds" << endl;
 	for (;;) {
-		std::cout << "chose which element to delete, input number from 0 to " << size - 1 << std::endl;
-		std::cin >> inputForDel;
+		cout << "chose which element to delete, input number from 0 to " << size - 1 << endl;
+		cin >> inputForDel;
 		if (0 < inputForDel && size - 1 > inputForDel) break;
-		std::cout << "Error, wrong input, try to input any number from " << 0 << " to " << size - 1 << std::endl;
-		std::cin.clear();
-		std::cin.ignore(INT_MAX, '\n');
+		cout << "Error, wrong input, try to input any number from " << 0 << " to " << size - 1 << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
-	auto t3 = clock_type::now();
+	high_resolution_clock::time_point t3 = high_resolution_clock::now();
 	deleteElement(inputForDel);
-	auto t4 = clock_type::now();
-	auto interval2 = t4 - t3;
-	std::cout << "speed of deleting element " << chrono::duration_cast<chrono::nanoseconds>(interval2).count() << "ns\n";
+	high_resolution_clock::time_point t4 = high_resolution_clock::now();
+	duration<double> time_span2 = duration_cast<duration<double>>(t4 - t3);
+	cout << "speed of deleting element is " << time_span2.count() * pow(10.0, 9.0) << " nanoseconds" << endl;
 	for (;;) {
-		std::cout << "input the index of the element you want to retrieve, it must be smaller than " << size - 1 << std::endl;
-		std::cin >> inputForSearch;
+		cout << "input the index of the element you want to retrieve, it must be smaller than " << size - 1 << endl;
+		cin >> inputForSearch;
 		if (0 < inputForSearch && size - 1 > inputForSearch) break;
-		std::cout << "Error, wrong input, try to input any number from " << 0 << " to " << size - 1 << std::endl;
-		std::cin.clear();
-		std::cin.ignore(INT_MAX, '\n');
+		cout << "Error, wrong input, try to input any number from " << 0 << " to " << size - 1 << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
-	auto t5 = clock_type::now();
+	high_resolution_clock::time_point t5 = high_resolution_clock::now();
 	searchElement(inputForSearch, arr, 0, size - 1);
-	auto t6 = clock_type::now();
-	auto interval3 = t6 - t5;
-	std::cout << "speed of searching for element " << chrono::duration_cast<chrono::nanoseconds>(interval3).count() << "ns\n";
+	high_resolution_clock::time_point t6 = high_resolution_clock::now();
+	duration<double> time_span3 = duration_cast<duration<double>>(t6 - t5);
+	cout << "speed of searching for element " << time_span3.count() * pow(10.0, 8.0) << " nanoseconds" << endl;
 	for (;;) {
-		std::cout << "Input two indexes to swap elements that lie at those indexes, inputs must be bigger than 0 and smaller that " << size - 1 << std::endl;
-		std::cin >> indForSwap1 >> indForSwap2;
+		cout << "Input two indexes to swap elements that lie at those indexes, inputs must be bigger than 0 and smaller that " << size - 1 << endl;
+		cin >> indForSwap1 >> indForSwap2;
 		if (0 < indForSwap1 && 0 < indForSwap2 && size - 1 > indForSwap1 && size - 1 > indForSwap2) break;
-		std::cout << "Error, wrong input, try to input numbers from " << 0 << " to " << size - 1 << std::endl;
-		std::cin.clear();
-		std::cin.ignore(INT_MAX, '\n');
+		cout << "Error, wrong input, try to input numbers from " << 0 << " to " << size - 1 << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
-	std::cout << "At index " << indForSwap1 << " there is number " << arr[indForSwap1] << " and at index " << indForSwap2 << " there is number " << arr[indForSwap2] << std::endl;
+	cout << "At index " << indForSwap1 << " there is number " << arr[indForSwap1] << " and at index " << indForSwap2 << " there is number " << arr[indForSwap2] << endl;
 	swapElement(indForSwap1, indForSwap2, arr);
-	std::cout << "We changed those elements and now at index " << indForSwap1 << " there is number " << arr[indForSwap1] << " and at index " << indForSwap2 << " there is number " << arr[indForSwap2] << std::endl;
+	cout << "We changed those elements and now at index " << indForSwap1 << " there is number " << arr[indForSwap1] << " and at index " << indForSwap2 << " there is number " << arr[indForSwap2] << endl;
 	//making symmetrical array
 	symArray(arr, size);
-	std::cout << "We made the array symmetrical:" << std::endl;
-	std::cout << "You can now replace any element and the array and it will remain symmetrical" << std::endl;
+	cout << "We made the array symmetrical:" << endl;
+	cout << "You can now replace any element and the array and it will remain symmetrical" << endl;
 	for (;;) {
-		std::cout << "chose where to insert the element, input number from 0 to " << size - 1 << std::endl;
-		std::cin >> inputSpotRepl;
+		cout << "chose where to insert the element, input number from 0 to " << size - 1 << endl;
+		cin >> inputSpotRepl;
 		if (0 < inputSpotRepl && size - 1 > inputSpotRepl) break;
-		std::cout << "Error, wrong input, try to input any number from " << 0 << " to " << size - 1 << std::endl;
-		std::cin.clear();
-		std::cin.ignore(INT_MAX, '\n');
+		cout << "Error, wrong input, try to input any number from " << 0 << " to " << size - 1 << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
 	for (;;) {
-		std::cout << "input the number with which to replace the element from the selected spot, it must be bigger than " << INT_MIN << " and smaller than " << INT_MAX << std::endl;
-		std::cin >> inputForRepl;
+		cout << "input the number with which to replace the element from the selected spot, it must be bigger than " << INT_MIN << " and smaller than " << INT_MAX << endl;
+		cin >> inputForRepl;
 		if (INT_MIN < inputForRepl && INT_MAX > inputForRepl) break;
-		std::cout << "Error, wrong input, try to input any number from " << INT_MIN << " to " << INT_MAX << std::endl;
-		std::cin.clear();
-		std::cin.ignore(INT_MAX, '\n');
+		cout << "Error, wrong input, try to input any number from " << INT_MIN << " to " << INT_MAX << endl;
+		cin.clear();
+		cin.ignore(INT_MAX, '\n');
 	}
-	std::cout << "As you can see the array is still symmetrical:" << std::endl;
+	cout << "As you can see the array is still symmetrical:" << endl;
 	symArray(arr, size);
 	return 0;
 }
-
-//TODO: fix the timer, it always grows
